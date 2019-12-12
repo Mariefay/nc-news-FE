@@ -11,11 +11,10 @@ class FullArticle extends React.Component {
   };
 
   changeVotes = value => {
-    api.updateVotes(this.props.article.article_id, value).then(() => {
-      this.setState(prev => {
-        return { votes: prev.votes + value, button : false };
-      });
+    this.setState(prev => {
+      return { votes: prev.votes + value, button : false };
     });
+    api.updateVotes(this.props.article.article_id, value)
     
   };
   render() {

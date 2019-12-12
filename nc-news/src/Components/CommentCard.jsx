@@ -10,11 +10,10 @@ class CommentCard extends React.Component {
   };
 
   changeVotesComm = value => {
-    api.updateVotesComments(this.props.comment.comment_id, value).then(() => {
-      this.setState(prev => {
-        return { votes: prev.votes + value, button: false };
-      });
+    this.setState(prev => {
+      return { votes: prev.votes + value, button: false };
     });
+    api.updateVotesComments(this.props.comment.comment_id, value)
   };
 
   render() {

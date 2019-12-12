@@ -39,7 +39,7 @@ class FilterBy extends React.Component {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <Link to="/">all articles</Link>
+              <Link to="/articles">all articles</Link>
             </li>
             {this.state.topics.map(topic => (
               <li key = {topic.slug}><Link to={`/${topic.slug}`}>{topic.slug}</Link></li>
