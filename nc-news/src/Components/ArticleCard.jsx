@@ -6,7 +6,7 @@ const ArticleCard = ({ article }) => {
   return (
     
     <StyledArticleCard>
-      <Link to = {`${article.article_id}`}>
+      <Link to = {`/articles/${article.article_id}`}>
       <h3>{article.title}</h3>
       <p>{article.author}</p></Link>
     </StyledArticleCard>

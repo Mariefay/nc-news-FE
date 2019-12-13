@@ -10,7 +10,7 @@ align-items: center;
     border : 0;
     font-family : 'Courier New', Courier, monospace;
     font-size : 18px;
-    width : 300px;
+    width : 60%;
     :hover{
         cursor: pointer;
     }

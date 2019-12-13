@@ -44,9 +44,9 @@ class FullArticle extends React.Component {
               <button className="votesButt" onClick={event => this.changeVotes(-1)}><i className="fa fa-thumbs-down"></i></button>
               </div>}</div>
 
-          <p className="created_at">{article.created_at}</p>
+          <p className="created_at">{article.created_at.slice(0, 10)}</p>
         </div>
-        <CommentsToggler className="commentToggler" id={article.article_id} />
+        <CommentsToggler className="commentToggler" id={article.article_id} user={this.props.user} />
       </StyledFullArticle>
     );
   }

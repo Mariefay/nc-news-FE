@@ -24,7 +24,7 @@ class CommentsToggler extends React.Component {
             </p>
           )}
         </button>
-        {this.state.showContent && <CommentBox id={this.props.id} />}
+        {this.state.showContent && <CommentBox id={this.props.id} user={this.props.user} />}
       </StyledCommentToggler>
     );
   }

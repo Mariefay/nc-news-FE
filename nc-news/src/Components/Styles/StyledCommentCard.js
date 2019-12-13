@@ -7,7 +7,7 @@ export const StyledCommentCard = styled.ul`
   border-top: 1px solid;
   border-left: 1px solid grey;
   margin-top : 20px;
-  width: 90%;
+  width: 100%;
   li {
     display: flex;
     flex-direction: row;
@@ -38,5 +38,13 @@ export const StyledCommentCard = styled.ul`
     margin-right : 10px;
     margin-left : 10px;
   }
+  .delete{
+    border-radius : 10px;
+    background-color:rgb(166, 3, 66);
+    border : 1px solid white;
+    color: white;
+    font-weight: bolder;
+  }
+
   
 `;

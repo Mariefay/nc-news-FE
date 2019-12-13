@@ -47,3 +47,14 @@ export const updateVotesComments = (commentId, votes) => {
     return data.comment.votes;
   })
 }
+
+export const postComment = (articleId, username, body) => {
+  return axios.post(`${baseUrl}/articles/${articleId}/comments`, { username: username, body: body }).then(({data}) => {
+    return data.comment;
+  })
+}
+export const deleteComment = (commentId) => {
+  return axios.delete(`${baseUrl}/comments/${commentId}`)
+  
+
+}

@@ -15,6 +15,10 @@ class CommentCard extends React.Component {
     });
     api.updateVotesComments(this.props.comment.comment_id, value)
   };
+  removeComment = (event) => {
+    event.preventDefault()
+    this.props.requestDelete(this.props.comment.comment_id)
+  }
 
   render() {
     return (
@@ -47,6 +51,8 @@ class CommentCard extends React.Component {
             )}{" "}
           </div>
         </li>
+        {this.props.comment.author === this.props.user &&
+          <li><button className="delete" onClick={this.removeComment}>Delete</button></li>}
       </StyledCommentCard>
     );
   }

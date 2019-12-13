@@ -5,10 +5,18 @@ import CommentCard from "./CommentCard";
 
 class CommentBox extends React.Component {
   state = {
-    commentList: []
+    commentList: [],
+    username: this.props.user,
+    commentValue: "Type your comment here.",
+    deleted: false
   };
   componentDidMount() {
     this.getComments();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.deleted !== prevState.deleted) {
+      this.getComments();
+    }
   }
 
   getComments = () => {
@@ -16,24 +24,56 @@ class CommentBox extends React.Component {
       this.setState({ commentList: comments });
     });
   };
-    handleSubmit = (event) => {
-        const value = event.target.value;
-        console.log(value)
-        event.preventDefault();
-        this.setState({})
-    }
+  deleteComm = commentId => {
+    api.deleteComment(commentId).then(() =>
+      this.setState(prev => {
+        return { deleted: !prev.deleted };
+      })
+    );
+  };
+  requestDelete = commentId => {
+    this.deleteComm(commentId);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    api
+      .postComment(this.props.id, this.state.username, this.state.commentValue)
+      .then(comment => {
+        this.setState(prev => {
+          return {
+            commentList: [comment, ...prev.commentList],
+            commentValue: "Type your comment here."
+          };
+        });
+      });
+  };
+  handleChange = event => {
+    this.setState({ commentValue: event.target.value });
+  };
 
   render() {
     return (
       <StyledCommentBox>
-        {this.state.commentList.map(comment => (
-          <CommentCard key={comment.comment_id} comment={comment} />
-        ))}
         <form className="form" onSubmit={this.handleSubmit}>
-          <textarea className="comment">Type your comment here.</textarea>
+          <textarea
+            value={this.state.commentValue}
+            onChange={this.handleChange}
+            className="comment"
+          ></textarea>
 
-          <button className="submitButt" type="submit">Submit</button>
+          <button className="submitButt" type="submit">
+            Submit
+          </button>
         </form>
+        {this.state.commentList.map(comment => (
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            requestDelete={this.requestDelete}
+            user = {this.props.user}
+          />
+        ))}
       </StyledCommentBox>
     );
   }

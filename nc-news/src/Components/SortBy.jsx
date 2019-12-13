@@ -21,7 +21,7 @@ class SortBy extends React.Component {
             <Link to="/">Date</Link>
           </li>
           <li>
-            <Link to="/">Comment Count</Link>
+            <Link to="/">Comment</Link>
           </li>
           <li>
             <Link to="/">Votes</Link>

@@ -25,7 +25,7 @@ class ArticlesList extends React.Component {
   };
 
   render() {
-    console.log(this.props.topic)
+    
     if (this.state.isLoading) return <h2>Loading...</h2>;
     else {
       return (

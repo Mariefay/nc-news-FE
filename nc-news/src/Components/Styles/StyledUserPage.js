@@ -13,7 +13,11 @@ export const StyledUserPage = styled.div`
     padding: 40px 100px;
     align-self : center;
     background: linear-gradient(to bottom, rgb(166,3,66) 55%, white 45%);
-    /* background-color : rgb(166,3,66); */
+    max-width : 80%;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center
   }
   img {
     border : 2px solid black;
