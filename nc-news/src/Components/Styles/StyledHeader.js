@@ -6,6 +6,7 @@ export const StyledHeader = styled.div`
   width: 100%;
   overflow: hidden;
   position: fixed;
+  z-index : 1;
 
   ul {
     list-style-type: none;

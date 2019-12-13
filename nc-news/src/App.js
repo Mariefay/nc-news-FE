@@ -4,8 +4,8 @@ import Header from "./Components/Header";
 import ArticlesPage from "./Components/ArticlesPage";
 import SingleArticlePage from "./Components/SingleArticlePage";
 import UserPage from "./Components/UserPage";
+import ErrorPage from "./Components/ErrorPage";
 import "./App.css";
-
 
 class App extends React.Component {
   state = {
@@ -17,9 +17,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        
         <Header />
-        
+
         <Router>
           <ArticlesPage
             path="/articles"
@@ -37,6 +36,7 @@ class App extends React.Component {
             changeUser={this.changeUser}
           />
           <UserPage path="/users/:username" />
+          <ErrorPage default />
         </Router>
       </div>
     );

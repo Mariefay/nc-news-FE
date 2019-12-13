@@ -7,7 +7,9 @@ import Login from "./Login";
 
 class ArticlesPage extends React.Component {
   state = {
-    userSelected: ""
+    userSelected: "",
+    sortBy: null,
+    orderBy : null
   };
 
   changeState = value => {
@@ -15,7 +17,13 @@ class ArticlesPage extends React.Component {
     this.props.changeUser(this.state.userSelected);
   };
 
+  sortState = (sortValue, orderValue) => {
+    this.setState({sortBy : sortValue, orderBy: orderValue})
+  }
+
+
   render() {
+    
     return (
       <StyledArticlesPage>
         <h1>Articles</h1>
@@ -27,9 +35,9 @@ class ArticlesPage extends React.Component {
           ) : (
             <Login changeState={this.changeState} />
           )}
-          <SortBy />
+          <SortBy sortState={this.sortState}/>
         </div>
-        <ArticlesList topic={this.props.topic} />
+        <ArticlesList topic={this.props.topic} sortBy={this.state.sortBy} orderBy={this.state.orderBy}/>
       </StyledArticlesPage>
     );
   }

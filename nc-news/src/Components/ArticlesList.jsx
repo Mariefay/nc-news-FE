@@ -12,20 +12,24 @@ class ArticlesList extends React.Component {
     this.getArticles();
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.topic !== this.props.topic) {
+    if (
+      prevProps.topic !== this.props.topic ||
+      prevProps.sortBy !== this.props.sortBy ||
+      prevProps.orderBy !== this.props.orderBy
+    ) {
       this.getArticles();
     }
-    
   }
 
   getArticles = () => {
-    api.getArticles(this.props.topic).then(articles => {
-      this.setState({ articles: articles, isLoading: false });
-    });
+    api
+      .getArticles(this.props.topic, this.props.sortBy, this.props.orderBy)
+      .then(articles => {
+        this.setState({ articles: articles, isLoading: false });
+      });
   };
 
   render() {
-    
     if (this.state.isLoading) return <h2>Loading...</h2>;
     else {
       return (

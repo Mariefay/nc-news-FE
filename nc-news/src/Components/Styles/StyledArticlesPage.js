@@ -7,6 +7,8 @@ export const StyledArticlesPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index : 0;
 
   .Toolbar {
     padding-top: 2%;
@@ -20,5 +22,11 @@ export const StyledArticlesPage = styled.div`
       font-weight: bolder;
       font-size: 15px;
     }
+    @media only screen and (max-width: 600px) {
+  p {
+   width: 150px;
+   margin-bottom : 0;
+  }
+}
   }
 `;

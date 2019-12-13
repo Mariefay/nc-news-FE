@@ -2,11 +2,12 @@ import axios from "axios";
 
 const baseUrl = "https://nc-news-api-marie.herokuapp.com/api";
 
-export const getArticles = (topic, sortBy) => {
+export const getArticles = (topic, sort_by, order) => {
   return axios.get(`${baseUrl}/articles`, {
     params: {
       topic,
-      sortBy
+      sort_by,
+      order
 
   }} ).then(({ data }) => {
     return data.articles;
