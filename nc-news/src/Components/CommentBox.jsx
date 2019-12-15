@@ -6,17 +6,11 @@ import CommentCard from "./CommentCard";
 class CommentBox extends React.Component {
   state = {
     commentList: [],
-    username: this.props.user,
-    commentValue: "Type your comment here.",
-    deleted: false
+    commentValue: "",
+    postFailMsg: ""
   };
   componentDidMount() {
     this.getComments();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.deleted !== prevState.deleted) {
-      this.getComments();
-    }
   }
 
   getComments = () => {
@@ -24,35 +18,41 @@ class CommentBox extends React.Component {
       this.setState({ commentList: comments });
     });
   };
-  deleteComm = commentId => {
-    api.deleteComment(commentId).then(() =>
-      this.setState(prev => {
-        return { deleted: !prev.deleted };
-      })
-    );
-  };
+
   requestDelete = commentId => {
-    this.deleteComm(commentId);
+    const newCommentList = this.state.commentList.filter(
+      comment => comment.comment_id !== commentId
+    );
+    this.setState({ commentList: newCommentList });
+    api.deleteComment(commentId);
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    api
-      .postComment(this.props.id, this.state.username, this.state.commentValue)
-      .then(comment => {
-        this.setState(prev => {
-          return {
-            commentList: [comment, ...prev.commentList],
-            commentValue: "Type your comment here."
-          };
+    if (this.state.commentValue === "") {
+      this.setState({ postFailMsg: "Please enter a valid comment" });
+    } else if (this.props.user === "") {
+      this.setState({ postFailMsg: "Please login to post a comment" });
+    } else {
+      api
+        .postComment(this.props.id, this.props.user, this.state.commentValue)
+        .then(comment => {
+          this.setState(prev => {
+            return {
+              commentList: [comment, ...prev.commentList],
+              commentValue: "",
+              postFailMsg: ""
+            };
+          });
         });
-      });
+    }
   };
   handleChange = event => {
     this.setState({ commentValue: event.target.value });
   };
 
   render() {
+    console.log(this.props.user);
     return (
       <StyledCommentBox>
         <form className="form" onSubmit={this.handleSubmit}>
@@ -66,12 +66,13 @@ class CommentBox extends React.Component {
             Submit
           </button>
         </form>
+        <p>{this.state.postFailMsg}</p>
         {this.state.commentList.map(comment => (
           <CommentCard
             key={comment.comment_id}
             comment={comment}
             requestDelete={this.requestDelete}
-            user = {this.props.user}
+            user={this.props.user}
           />
         ))}
       </StyledCommentBox>

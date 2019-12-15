@@ -6,7 +6,8 @@ class ErrorPage extends React.Component {
   render() {
     return (
       <StyledErrorPage>
-        <h1>Oops Page not found</h1>
+        <h1>Oops, Page not found</h1>
+        {this.props.msg && <p>{this.props.msg}</p>}
       </StyledErrorPage>
     );
   }

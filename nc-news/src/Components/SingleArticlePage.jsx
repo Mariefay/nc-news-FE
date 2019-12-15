@@ -3,11 +3,13 @@ import FullArticle from "./FullArticle";
 import * as api from "../api";
 import { StyledSingleArticlePage } from "./Styles/StyledSingleArticlePage";
 import Login from "./Login";
+import ErrorPage from "./ErrorPage";
 
 class SingleArticlePage extends React.Component {
   state = {
     article: {},
-    isLoading: true
+    isLoading: true,
+    error: null
   };
 
   componentDidMount() {
@@ -17,21 +19,33 @@ class SingleArticlePage extends React.Component {
   getArticleById = () => {
     api
       .getArticleById(this.props.id)
-      .then(article => this.setState({ article: article, isLoading: false }));
+      .then(article =>
+        this.setState({ article: article, isLoading: false, err: null })
+      )
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          isLoading: false,
+          error: err
+        });
+      });
   };
 
   render() {
+    const { user, changeUser } = this.props;
+    const { isLoading, article } = this.state;
+    if (this.state.error) return <ErrorPage msg="this article doesn't exist" />;
     return (
       <StyledSingleArticlePage>
-        {this.props.user !== "" ? (
-          <p className="LoggedIn">Logged in as {this.props.user}</p>
+        {user !== "" ? (
+          <p className="LoggedIn">Logged in as {user}</p>
         ) : (
-          <Login changeState={this.props.changeUser} />
+          <Login changeStateUser={changeUser} />
         )}
-        {this.state.isLoading ? (
+        {isLoading ? (
           <h2>Loading...</h2>
         ) : (
-          <FullArticle article={this.state.article} user={this.props.user} />
+          <FullArticle article={article} user={user} />
         )}
       </StyledSingleArticlePage>
     );

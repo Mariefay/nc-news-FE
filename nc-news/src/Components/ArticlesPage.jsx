@@ -4,41 +4,63 @@ import ArticlesList from "./ArticlesList";
 import FilterBy from "./FilterBy";
 import SortBy from "./SortBy";
 import Login from "./Login";
+import * as api from "../api";
+import ErrorPage from "./ErrorPage";
 
 class ArticlesPage extends React.Component {
   state = {
-    userSelected: "",
+    username: "",
     sortBy: null,
-    orderBy : null
+    orderBy: null,
+    topicList: [],
+    topicSlugs: []
   };
 
-  changeState = value => {
-    this.setState({ userSelected: value });
-    this.props.changeUser(this.state.userSelected);
-  };
-
-  sortState = (sortValue, orderValue) => {
-    this.setState({sortBy : sortValue, orderBy: orderValue})
+  componentDidMount() {
+    this.getTopics();
   }
 
+  getTopics = () => {
+    api.getTopics().then(topics => {
+      const slugs = topics.map(topic => topic.slug);
+      this.setState({ topicList: topics, topicSlugs: slugs });
+    });
+  };
+
+  changeStateUser = value => {
+    this.props.changeUser(value);
+    this.setState({ username: value });
+  };
+
+  changeStateSorting = (sortValue, orderValue) => {
+    this.setState({ sortBy: sortValue, orderBy: orderValue });
+  };
 
   render() {
-    
+    const { topic } = this.props;
+    const { sortBy, orderBy, username, topicSlugs, topicList } = this.state;
     return (
-      <StyledArticlesPage>
-        <h1>Articles</h1>
+      <div>
+        {topicSlugs.indexOf(topic) === -1 && topic !== undefined ? (
+          <ErrorPage msg={`${topic} is not a topic`} />
+        ) : (
+          <StyledArticlesPage>
+            <h1>Articles</h1>
 
-        <div className="Toolbar">
-          <FilterBy />
-          {this.props.user !== "" ? (
-            <p>Logged in as {this.props.user}</p>
-          ) : (
-            <Login changeState={this.changeState} />
-          )}
-          <SortBy sortState={this.sortState}/>
-        </div>
-        <ArticlesList topic={this.props.topic} sortBy={this.state.sortBy} orderBy={this.state.orderBy}/>
-      </StyledArticlesPage>
+            <div className="Toolbar">
+              <FilterBy topics={topicList} />
+              {username !== "" ? (
+                <p>Logged in as {username}</p>
+              ) : (
+                <Login changeStateUser={this.changeStateUser} />
+              )}
+              <SortBy changeStateSorting={this.changeStateSorting} />
+            </div>
+
+            <ArticlesList topic={topic} sortBy={sortBy} orderBy={orderBy} />
+          </StyledArticlesPage>
+        )}
+      </div>
     );
   }
 }

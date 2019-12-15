@@ -15,16 +15,16 @@ class UserPage extends React.Component {
     this.getUser();
   }
   render() {
+    const { user, isLoading } = this.state;
     return (
       <StyledUserPage>
-        {this.state.isLoading ? (
+        {isLoading ? (
           <h2>Loading...</h2>
-            ) : (
-                    
-                    <div className="userCard">
-            <img src={this.state.user.avatar_url} alt="User Avatar"></img>
-            <h2>{this.state.user.username}</h2>
-            <h4>{this.state.user.name}</h4>
+        ) : (
+          <div className="userCard">
+            <img src={user.avatar_url} alt="User Avatar"></img>
+            <h2>{user.username}</h2>
+            <h4>{user.name}</h4>
           </div>
         )}
       </StyledUserPage>

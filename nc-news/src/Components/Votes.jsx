@@ -1,6 +1,5 @@
 import React from "react";
 
-
 class Votes extends React.Component {
   state = {
     votes: 0,
@@ -10,7 +9,7 @@ class Votes extends React.Component {
     this.setState(prev => {
       return { votes: prev.votes + value, button: false };
     });
-    this.props.upVotes(value);
+    this.props.updatingVotes(value);
   };
   render() {
     return (

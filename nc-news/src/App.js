@@ -15,28 +15,20 @@ class App extends React.Component {
     this.setState({ user: value });
   };
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
         <Header />
-
         <Router>
-          <ArticlesPage
-            path="/articles"
-            user={this.state.user}
-            changeUser={this.changeUser}
-          />
-          <ArticlesPage
-            path="/:topic"
-            user={this.state.user}
-            changeUser={this.changeUser}
-          />
+          <ArticlesPage path="/articles" changeUser={this.changeUser} />
+          <ArticlesPage path="/:topic" changeUser={this.changeUser} />
           <SingleArticlePage
             path="/articles/:id"
-            user={this.state.user}
+            user={user}
             changeUser={this.changeUser}
           />
           <UserPage path="/users/:username" />
-          <ErrorPage default />
+          <ErrorPage default msg="this url doesn't exist" />
         </Router>
       </div>
     );

@@ -6,7 +6,8 @@ import { StyledArticleList } from "./Styles/StyledArticleList";
 class ArticlesList extends React.Component {
   state = {
     articles: [],
-    isLoading: true
+    isLoading: true,
+    err: null
   };
   componentDidMount() {
     this.getArticles();
@@ -30,11 +31,13 @@ class ArticlesList extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) return <h2>Loading...</h2>;
+    const { isLoading, err, articles } = this.state;
+    if (isLoading) return <h2>Loading...</h2>;
+    if (err) return <h1>{err.msg}</h1>;
     else {
       return (
         <StyledArticleList>
-          {this.state.articles.map(article => (
+          {articles.map(article => (
             <ArticleCard key={article.article_id} article={article} />
           ))}
         </StyledArticleList>

@@ -11,10 +11,11 @@ class CommentsToggler extends React.Component {
     });
   };
   render() {
+    const { showContent } = this.state;
     return (
       <StyledCommentToggler>
-        <button className = "commentsButton" onClick={this.changeState}>
-          {this.state.showContent ? (
+        <button className="commentsButton" onClick={this.changeState}>
+          {showContent ? (
             <p>
               <i className="fa fa-comments"></i> Hide Comments
             </p>
@@ -24,7 +25,9 @@ class CommentsToggler extends React.Component {
             </p>
           )}
         </button>
-        {this.state.showContent && <CommentBox id={this.props.id} user={this.props.user} />}
+        {showContent && (
+          <CommentBox id={this.props.id} user={this.props.user} />
+        )}
       </StyledCommentToggler>
     );
   }
