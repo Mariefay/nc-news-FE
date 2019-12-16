@@ -24,7 +24,7 @@ class UserPage extends React.Component {
           <div className="userCard">
             <img src={user.avatar_url} alt="User Avatar"></img>
             <h2>{user.username}</h2>
-            <h4>{user.name}</h4>
+            <h5>{user.name}</h5>
           </div>
         )}
       </StyledUserPage>
