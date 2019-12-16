@@ -1,10 +1,23 @@
+This project is the frontend part of the 2 weeks long project realised during the Northcoders Bootcamp.
+NC-News is a news website that allows you to navigate through the different articles or topics and interact with them. The frontend was created with React, the backend with Express.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
+The required version of node is : v10.16.0  .
+
 In the project directory, you can run:
 
 ### `npm start`
+
+To run this project locally :
+````
+git clone https://github.com/Mariefay/nc-news-FE.git
+cd nc-news-fe
+npm start
+````
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -37,32 +50,13 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Backend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+link for the backend part of the project : https://github.com/Mariefay/nc-news
 
-### Code Splitting
+## Deployed version
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This project has been deployed with heroku.
+The deployed version is available at : https://marie-nc-news-frontend.herokuapp.com/
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
