@@ -7,7 +7,8 @@ class CommentBox extends React.Component {
   state = {
     commentList: [],
     commentValue: "",
-    postFailMsg: ""
+    postFailMsg: "",
+    error : null
   };
   componentDidMount() {
     this.getComments();
@@ -15,8 +16,8 @@ class CommentBox extends React.Component {
 
   getComments = () => {
     api.getCommentsByID(this.props.id).then(comments => {
-      this.setState({ commentList: comments });
-    });
+      this.setState({ commentList: comments })
+    }).catch(err => this.setState({error : err}));;
   };
 
   requestDelete = commentId => {
@@ -24,7 +25,7 @@ class CommentBox extends React.Component {
       comment => comment.comment_id !== commentId
     );
     this.setState({ commentList: newCommentList });
-    api.deleteComment(commentId);
+    api.deleteComment(commentId).catch(err => this.setState({error: err}));
   };
 
   handleSubmit = event => {

@@ -5,12 +5,13 @@ import * as api from "../api";
 class UserPage extends React.Component {
   state = {
     user: {},
-    isLoading: true
+    isLoading: true,
+    error : null
   };
   getUser = () =>
     api.getUser(this.props.username).then(user => {
       this.setState({ user: user, isLoading: false });
-    });
+    }).catch(err => this.setState({error : err}));
   componentDidMount() {
     this.getUser();
   }

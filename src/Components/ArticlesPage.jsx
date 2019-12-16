@@ -13,7 +13,8 @@ class ArticlesPage extends React.Component {
     sortBy: null,
     orderBy: null,
     topicList: [],
-    topicSlugs: []
+    topicSlugs: [],
+    error : null
   };
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class ArticlesPage extends React.Component {
     api.getTopics().then(topics => {
       const slugs = topics.map(topic => topic.slug);
       this.setState({ topicList: topics, topicSlugs: slugs });
-    });
+    }).catch(err => this.setState({error: err}));
   };
 
   changeStateUser = value => {

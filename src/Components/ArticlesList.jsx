@@ -7,7 +7,7 @@ class ArticlesList extends React.Component {
   state = {
     articles: [],
     isLoading: true,
-    err: null
+    error: null
   };
   componentDidMount() {
     this.getArticles();
@@ -27,7 +27,7 @@ class ArticlesList extends React.Component {
       .getArticles(this.props.topic, this.props.sortBy, this.props.orderBy)
       .then(articles => {
         this.setState({ articles: articles, isLoading: false });
-      });
+      }).catch(err => this.setState({error : err}));
   };
 
   render() {
