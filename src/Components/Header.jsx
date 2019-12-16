@@ -9,7 +9,7 @@ const Header = () => {
         <li>NC-NEWS</li>
 
         <li className="right">
-          <Link to="/articles">
+          <Link to="/">
             <i className="fa fa-fw fa-home"></i>Home
           </Link>
         </li>

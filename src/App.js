@@ -20,8 +20,8 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Router>
-          <ArticlesPage path="/articles" changeUser={this.changeUser} />
-          <ArticlesPage path="/:topic" changeUser={this.changeUser} />
+          <ArticlesPage path="/" changeUser={this.changeUser} />
+          <ArticlesPage path="/articles/topics/:topic" changeUser={this.changeUser} />
           <SingleArticlePage
             path="/articles/:id"
             user={user}
