@@ -1,12 +1,11 @@
-This project is the frontend part of the 2 weeks long project realised during the Northcoders Bootcamp.
-NC-News is a news website that allows you to navigate through the different articles or topics and interact with them. The frontend was created with React, the backend with Express.
-
+NC-News is a 2 weeks project created as part of the Northcoders Bootcamp. The aim is to create a news website that allows you to navigate through the different articles, topics and users and interact with them (logging in, posting comments or upvoting/downvoting...). This github project is the backend part, created with Express and hosted on heroku.
+Links to the backend and hosted version are available below.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-The required version of node is : v10.16.0  .
+This project requires the node version v10.16.0  
 
 In the project directory, you can run:
 
@@ -53,7 +52,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Backend
 
-link for the backend part of the project : https://github.com/Mariefay/nc-news
+Link for the backend part of the project : https://github.com/Mariefay/nc-news
 
 ## Deployed version
 
