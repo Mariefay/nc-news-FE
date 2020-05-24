@@ -1,4 +1,4 @@
-NC-News is a 2 weeks project created as part of the Northcoders Bootcamp. The aim is to create a news website that allows you to navigate through the different articles, topics and users and interact with them (logging in, posting comments or upvoting/downvoting...). This github project is the backend part, created with Express and hosted on heroku.
+NC-News is a 2 weeks project created as part of the Northcoders Bootcamp. The aim is to create a news website that allows you to navigate through the different articles, topics and users and interact with them (logging in, posting comments or upvoting/downvoting...). This github project is the frontend part, created with React.JS.
 Links to the backend and hosted version are available below.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
